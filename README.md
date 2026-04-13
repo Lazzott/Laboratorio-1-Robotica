@@ -76,6 +76,9 @@ Una vez abierto el mundo en Webots:
 - Utilizar el teclado para controlar el robot
 <img width="272" height="153" alt="image" src="https://github.com/user-attachments/assets/58ef15d4-39c7-45f4-a5e1-cc636d1400ae" />
 
+- El robot por defecto se mueve en linea recta, el boton avanzar solo hara que vaya mas rapido mientras se mantenga presionado
+  
+
 
 ---
 
@@ -87,3 +90,16 @@ Comprender cómo un robot diferencial:
 - Puede ser controlado manualmente en un entorno simulado
 
 ---
+## Resultados obtenidos
+
+A partir de la implementación y ejecución del controlador del robot, se logró cumplir con los objetivos planteados para el laboratorio.
+
+El robot diferencial fue capaz de responder correctamente a las entradas del teclado, permitiendo un control adecuado de la velocidad de cada motor. Esto se vio reflejado en los siguientes comportamientos observados:
+
+- **Movimiento en línea recta:** al asignar la misma velocidad a ambos motores, el robot avanzó de forma recta y estable.  
+- **Rotación en su propio eje:** al aplicar velocidades opuestas en los motores, el robot logró girar sobre sí mismo sin desplazarse.  
+- **Movimiento curvo:** al establecer diferentes velocidades entre ambos motores, el robot generó trayectorias curvas de manera controlada.  
+
+Estos resultados demuestran que el robot cumple con el modelo de movimiento diferencial esperado, validando que la implementación del control es correcta.
+
+En conclusión, se consiguió lo buscado en el laboratorio, ya que el robot es capaz de moverse adecuadamente y ejecutar los distintos tipos de desplazamiento requeridos, cumpliendo con los requisitos establecidos.
