@@ -89,6 +89,8 @@ Comprender cómo un robot diferencial:
 - Cambia su trayectoria según las velocidades relativas
 - Puede ser controlado manualmente en un entorno simulado
 
+<img width="626" height="340" alt="image" src="https://github.com/user-attachments/assets/c87ff8a0-9204-43cb-869e-a92b60059a38" />
+
 ---
 ## Resultados obtenidos
 
@@ -103,3 +105,24 @@ El robot diferencial fue capaz de responder correctamente a las entradas del tec
 Estos resultados demuestran que el robot cumple con el modelo de movimiento diferencial esperado, validando que la implementación del control es correcta.
 
 En conclusión, se consiguió lo buscado en el laboratorio, ya que el robot es capaz de moverse adecuadamente y ejecutar los distintos tipos de desplazamiento requeridos, cumpliendo con los requisitos establecidos.
+
+## Preguntas de análisis
+
+1. **¿Qué ocurre cuando ambas ruedas tienen la misma velocidad?**  
+Cuando ambas ruedas del robot tienen la misma velocidad y giran en el mismo sentido, el robot avanza en línea recta. Esto se debe a que no existe diferencia de velocidades que genere un cambio en la orientación, por lo tanto, el movimiento es uniforme y sin desviaciones. Este comportamiento es característico de los robots diferenciales cuando no hay diferencia angular entre las ruedas.
+
+---
+
+2. **¿Cómo cambia la trayectoria cuando las velocidades son diferentes?**  
+Cuando las velocidades de las ruedas son distintas, el robot comienza a curvarse y desviarse de la trayectoria recta. La rueda que gira más rápido recorre una mayor distancia en el mismo tiempo, lo que provoca que el robot gire hacia el lado de la rueda más lenta. Dependiendo de la diferencia de velocidades, la curva puede ser más abierta o más cerrada, generando trayectorias circulares o arcos.
+
+---
+
+3. **¿Qué ocurre cuando una rueda gira en sentido opuesto a la otra?**  
+Cuando una rueda gira en sentido contrario a la otra, el robot rota sobre su propio eje sin desplazarse hacia adelante ni hacia atrás. Este movimiento se conoce como rotación pura, ya que el centro del robot permanece prácticamente en el mismo punto mientras cambia su orientación. Es útil para realizar giros precisos o cambiar de dirección rápidamente.
+
+---
+
+4. **¿Qué tipo de movimiento permite dibujar un círculo?**  
+Para que el robot describa un círculo, debe realizar un movimiento curvo constante, donde ambas ruedas giran en el mismo sentido pero con diferentes velocidades. Generalmente, una rueda mantiene una velocidad mayor mientras la otra tiene una velocidad reducida, ambas constantes. Esto genera una trayectoria circular estable, donde el radio del círculo depende de la diferencia entre las velocidades de las ruedas: a mayor diferencia, menor es el radio del círculo.
+
