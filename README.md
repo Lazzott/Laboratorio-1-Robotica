@@ -91,6 +91,8 @@ Comprender cómo un robot diferencial:
 
 <img width="626" height="340" alt="image" src="https://github.com/user-attachments/assets/c87ff8a0-9204-43cb-869e-a92b60059a38" />
 
+- Se adjunta en el github un video moviendo la simulacion y el como cambia la trayectoria del robot
+
 ---
 ## Resultados obtenidos
 
