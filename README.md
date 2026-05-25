@@ -274,7 +274,9 @@ Se creó un entorno sin obstaculos y amplios espacios de movimiento.
 ## Escenario 2 - Entorno complejo
 
 Se utilizó un escenario con múltiples paredes y espacios reducidos.
-<img width="609" height="409" alt="Captura de pantalla 2026-05-24 a la(s) 11 25 27 p m" src="https://github.com/user-attachments/assets/c614de2e-8877-428f-805b-02072373120f" />
+<img width="639" height="489" alt="Captura de pantalla 2026-05-24 a la(s) 11 32 25 p m" src="https://github.com/user-attachments/assets/8076c676-998d-4150-abff-213885118451" />
+
+
 
 
 ### Resultados observados
