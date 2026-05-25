@@ -328,13 +328,24 @@ Además, se observó que las señales RAW presentan bastante ruido, por lo que l
 
 ## 1. Abrir el mundo en Webots
 
-Abrir el archivo `.wbt` incluido en el repositorio.
+Abrir el archivo `.wbt` incluido en el repositorio, ubicado en la carpeta worlds.
+<img width="733" height="180" alt="Captura de pantalla 2026-05-24 a la(s) 11 06 40 p m" src="https://github.com/user-attachments/assets/cd171c65-d6e3-4fc4-81e1-598a9de63cd5" />
+<img width="735" height="86" alt="Captura de pantalla 2026-05-24 a la(s) 11 08 24 p m" src="https://github.com/user-attachments/assets/918459de-0236-490c-9837-c6b2f51b458c" />
+
+Se encuentran los dos escenarios disponibles, el que contiene obstaculos y el que tiene el area libre de ellos.
+
+
 
 ---
 
 ## 2. Configurar controlador
 
 Seleccionar el robot e-puck y verificar que el controlador asignado corresponda al controlador desarrollado.
+<img width="343" height="550" alt="Captura de pantalla 2026-05-24 a la(s) 11 11 55 p m" src="https://github.com/user-attachments/assets/d5404867-ff27-446e-9ba2-55adbe7a0aa7" />
+
+<img width="343" height="415" alt="Captura de pantalla 2026-05-24 a la(s) 11 12 44 p m" src="https://github.com/user-attachments/assets/543013a8-ccad-4083-8e49-5a62445e4e70" />
+
+
 
 ---
 
