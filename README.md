@@ -1,4 +1,4 @@
-# Laboratorio 1 - Robótica y Sistemas Autónomos
+# Laboratorio 2 - Navegación Reactiva con Filtrado y Fusión Sensorial
 
 ## Integrantes
 - Nicolás Soto  
@@ -7,124 +7,364 @@
 
 ---
 
-## Descripción del laboratorio
+# Descripción del laboratorio
 
-En este laboratorio se estudia el comportamiento de un robot diferencial, analizando cómo su movimiento depende de la velocidad de cada uno de sus motores.
+En este laboratorio se implementó un sistema de navegación reactiva utilizando el robot diferencial **e-puck** en Webots.
 
-Se evalúan:
-- Las trayectorias generadas por el robot
-- Cómo cambia el movimiento según la velocidad independiente de cada motor
-- El efecto del control diferencial en la navegación
+El objetivo principal fue desarrollar un controlador autónomo capaz de:
+
+- detectar obstáculos,
+- evitar colisiones,
+- estimar distancias,
+- aplicar filtros de señales,
+- y utilizar fusión sensorial mediante un filtro de Kalman.
+
+El sistema utiliza sensores de distancia y encoders de rueda para mejorar la percepción del entorno y la estabilidad de la navegación.
 
 ---
 
-## Plataforma utilizada
+# Plataforma utilizada
 
-Se utilizó el robot diferencial **E-puck**, el cual fue modificado para permitir control manual mediante teclado.
+Se utilizó el robot diferencial **e-puck** disponible en Webots.
 
 - Lenguaje de programación: **C**
 - Entorno de simulación: **Webots**
-- Tipo de control: **Manual (teclado)**
+- Tipo de control: **Autónomo**
+- Estrategia: **Navegación reactiva**
 
 ---
 
-## Modificaciones realizadas
+# Objetivos del laboratorio
 
-El código original del robot fue adaptado para:
-- Permitir la interacción con el usuario
-- Controlar el movimiento mediante entradas del teclado
-- Ajustar las velocidades de los motores en tiempo real
+Implementar un sistema robótico capaz de:
 
----
-
-## Instrucciones de uso
-
-### 1. Descomprimir archivos
-Descomprimir el archivo `.zip` entregado, que contiene:
-- El robot
-- El mundo de simulación
-- Configuraciones necesarias
+- detectar obstáculos mediante sensores infrarrojos,
+- estimar movimiento utilizando encoders,
+- registrar señales del robot,
+- aplicar filtros de suavizado,
+- implementar un filtro de Kalman,
+- y navegar autónomamente evitando colisiones.
 
 ---
 
-### 2. Abrir el mundo en Webots
+# Robot utilizado
 
-Dentro de la carpeta descomprimida, abrir la siguiente ruta:
+El robot e-puck corresponde a un robot diferencial de dos ruedas motrices independientes.
 
-<img width="649" height="211" alt="image" src="https://github.com/user-attachments/assets/ed0d155a-7cac-4636-9ee5-cc8ad02adda1" />
+El robot incorpora:
 
----
-
-### 3. Configurar el controlador
-
-Una vez abierto el mundo en Webots:
-
-1. En el panel izquierdo (árbol de escenas), seleccionar el robot **E-puck**
-2. En el panel de propiedades, buscar el campo **controller**
-3. Hacer clic y seleccionar el controlador:
-
-<img width="246" height="580" alt="image" src="https://github.com/user-attachments/assets/c8355d7a-0901-43a8-8c66-b5e87874fd65" />
-<img width="278" height="314" alt="image" src="https://github.com/user-attachments/assets/36c5acaf-d4d0-49c5-ae46-10113626035f" />
-
-
+- sensores infrarrojos de proximidad,
+- encoders de rueda,
+- motores diferenciales,
+- controlador programable en C.
 
 ---
 
-### 4. Ejecutar la simulación
+# Sensores utilizados
 
-- Iniciar la simulación en Webots
-- Utilizar el teclado para controlar el robot
-<img width="272" height="153" alt="image" src="https://github.com/user-attachments/assets/58ef15d4-39c7-45f4-a5e1-cc636d1400ae" />
+## Sensores de distancia
 
-- El robot por defecto se mueve en linea recta, el boton avanzar solo hara que vaya mas rapido mientras se mantenga presionado
-  
+Se utilizaron los siguientes sensores del e-puck:
 
+| Sensor | Función |
+|---|---|
+| ps0 | frontal derecho |
+| ps7 | frontal izquierdo |
+| ps6 | lateral izquierdo |
+| ps1 | lateral derecho |
 
----
-
-## Objetivo del experimento
-
-Comprender cómo un robot diferencial:
-- Genera movimiento a partir de dos motores independientes
-- Cambia su trayectoria según las velocidades relativas
-- Puede ser controlado manualmente en un entorno simulado
-
-<img width="626" height="340" alt="image" src="https://github.com/user-attachments/assets/c87ff8a0-9204-43cb-869e-a92b60059a38" />
-
-- Se adjunta en el github un video moviendo la simulacion y el como cambia la trayectoria del robot
-
----
-## Resultados obtenidos
-
-A partir de la implementación y ejecución del controlador del robot, se logró cumplir con los objetivos planteados para el laboratorio.
-
-El robot diferencial fue capaz de responder correctamente a las entradas del teclado, permitiendo un control adecuado de la velocidad de cada motor. Esto se vio reflejado en los siguientes comportamientos observados:
-
-- **Movimiento en línea recta:** al asignar la misma velocidad a ambos motores, el robot avanzó de forma recta y estable.  
-- **Rotación en su propio eje:** al aplicar velocidades opuestas en los motores, el robot logró girar sobre sí mismo sin desplazarse.  
-- **Movimiento curvo:** al establecer diferentes velocidades entre ambos motores, el robot generó trayectorias curvas de manera controlada.  
-
-Estos resultados demuestran que el robot cumple con el modelo de movimiento diferencial esperado, validando que la implementación del control es correcta.
-
-En conclusión, se consiguió lo buscado en el laboratorio, ya que el robot es capaz de moverse adecuadamente y ejecutar los distintos tipos de desplazamiento requeridos, cumpliendo con los requisitos establecidos.
-
-## Preguntas de análisis
-
-1. **¿Qué ocurre cuando ambas ruedas tienen la misma velocidad?**  
-Cuando ambas ruedas del robot tienen la misma velocidad y giran en el mismo sentido, el robot avanza en línea recta. Esto se debe a que no existe diferencia de velocidades que genere un cambio en la orientación, por lo tanto, el movimiento es uniforme y sin desviaciones. Este comportamiento es característico de los robots diferenciales cuando no hay diferencia angular entre las ruedas.
+Los sensores frontales fueron utilizados para detectar obstáculos cercanos, mientras que los sensores laterales permitieron decidir la dirección de giro durante la evasión de obstáculos.
 
 ---
 
-2. **¿Cómo cambia la trayectoria cuando las velocidades son diferentes?**  
-Cuando las velocidades de las ruedas son distintas, el robot comienza a curvarse y desviarse de la trayectoria recta. La rueda que gira más rápido recorre una mayor distancia en el mismo tiempo, lo que provoca que el robot gire hacia el lado de la rueda más lenta. Dependiendo de la diferencia de velocidades, la curva puede ser más abierta o más cerrada, generando trayectorias circulares o arcos.
+## Encoders de rueda
+
+El robot utiliza encoders integrados en ambas ruedas:
+
+- encoder izquierdo,
+- encoder derecho.
+
+Estos sensores permitieron estimar el desplazamiento lineal del robot mediante el cálculo del desplazamiento angular de las ruedas.
+
+La relación utilizada fue:
+
+```math
+s = r\theta
+```
+
+donde:
+
+- \(s\) corresponde al desplazamiento lineal,
+- \(r\) corresponde al radio de la rueda,
+- \(\theta\) corresponde al desplazamiento angular.
 
 ---
 
-3. **¿Qué ocurre cuando una rueda gira en sentido opuesto a la otra?**  
-Cuando una rueda gira en sentido contrario a la otra, el robot rota sobre su propio eje sin desplazarse hacia adelante ni hacia atrás. Este movimiento se conoce como rotación pura, ya que el centro del robot permanece prácticamente en el mismo punto mientras cambia su orientación. Es útil para realizar giros precisos o cambiar de dirección rápidamente.
+# Frecuencia de muestreo
+
+El controlador fue ejecutado utilizando un:
+
+| Parámetro | Valor |
+|---|---|
+| TIME_STEP | 64 ms |
+| Frecuencia aproximada | 15.625 Hz |
+
+La frecuencia de muestreo utilizada corresponde a:
+
+```math
+f_s = \frac{1}{T_s}
+```
 
 ---
 
-4. **¿Qué tipo de movimiento permite dibujar un círculo?**  
-Para que el robot describa un círculo, debe realizar un movimiento curvo constante, donde ambas ruedas giran en el mismo sentido pero con diferentes velocidades. Generalmente, una rueda mantiene una velocidad mayor mientras la otra tiene una velocidad reducida, ambas constantes. Esto genera una trayectoria circular estable, donde el radio del círculo depende de la diferencia entre las velocidades de las ruedas: a mayor diferencia, menor es el radio del círculo.
+# Registro de señales
 
+Durante la ejecución del robot se registraron:
+
+- señales RAW de sensores,
+- señales filtradas mediante EMA,
+- estimación Kalman,
+- valores de encoders.
+
+La información fue almacenada en:
+
+```text
+sensor_log.csv
+```
+
+---
+
+# Análisis de señales
+
+## Señal RAW
+
+La señal RAW corresponde a la lectura directa de los sensores de distancia.
+
+Esta señal presentó:
+
+- ruido,
+- variaciones bruscas,
+- fluctuaciones rápidas,
+- sensibilidad a obstáculos cercanos.
+
+---
+
+## Filtro EMA
+
+Se implementó un filtro EMA (Exponential Moving Average) para suavizar las señales provenientes de los sensores frontales.
+
+La ecuación utilizada fue:
+
+```math
+EMA_k = \alpha EMA_{k-1} + (1-\alpha)x_k
+```
+
+Este filtro permitió reducir variaciones rápidas y estabilizar la señal utilizada por el controlador.
+
+---
+
+# Estimación del avance mediante encoders
+
+El desplazamiento del robot fue estimado utilizando los encoders de las ruedas.
+
+Primero se calculó el cambio angular:
+
+```c
+delta_left = left_enc - prev_left_enc;
+delta_right = right_enc - prev_right_enc;
+```
+
+Posteriormente se transformó el desplazamiento angular en desplazamiento lineal:
+
+```math
+s = r\theta
+```
+
+Finalmente se calculó el avance promedio del robot:
+
+```math
+d = \frac{d_{left}+d_{right}}{2}
+```
+
+---
+
+# Implementación del filtro de Kalman
+
+Se implementó un filtro de Kalman escalar para estimar la distancia frontal al obstáculo más cercano.
+
+El filtro combina:
+
+- predicción basada en encoders,
+- corrección utilizando sensores de distancia.
+
+Esto permitió mejorar significativamente la estabilidad de la estimación.
+
+---
+
+# Etapa de predicción
+
+La predicción utiliza el avance estimado mediante encoders para calcular la nueva distancia esperada.
+
+La ecuación utilizada fue:
+
+```math
+\hat{d}_k^{-} = \hat{d}_{k-1} + \Delta d_k
+```
+
+Además, se actualizó la incertidumbre del modelo:
+
+```math
+P_k^{-} = P_{k-1} + Q
+```
+
+---
+
+# Etapa de corrección
+
+La corrección ajusta la predicción utilizando la medición real obtenida desde los sensores frontales.
+
+La ganancia de Kalman utilizada fue:
+
+```math
+K_k = \frac{P_k^{-}}{P_k^{-}+R}
+```
+
+La actualización de la estimación fue:
+
+```math
+\hat{d}_k = \hat{d}_k^{-} + K_k(z_k-\hat{d}_k^{-})
+```
+
+Esta etapa permitió fusionar las mediciones reales con la predicción obtenida desde los encoders.
+
+---
+
+# Navegación reactiva implementada
+
+El robot utiliza una estrategia reactiva basada en la distancia frontal estimada.
+
+## Estrategia utilizada
+
+- Si no existen obstáculos cercanos → avanzar.
+- Si existe un obstáculo → girar para evitar colisión.
+
+La dirección del giro se determina utilizando sensores laterales:
+
+- obstáculo más cercano a la izquierda → girar derecha,
+- obstáculo más cercano a la derecha → girar izquierda.
+
+---
+
+# Escenarios de prueba
+
+## Escenario 1 - Entorno limpio
+
+Se creó un entorno con pocos obstáculos y amplios espacios de movimiento.
+
+### Resultados observados
+
+- navegación estable,
+- trayectorias suaves,
+- pocas colisiones,
+- detección temprana de obstáculos.
+
+---
+
+## Escenario 2 - Entorno complejo
+
+Se utilizó un escenario con múltiples paredes y espacios reducidos.
+
+### Resultados observados
+
+- aumento en maniobras evasivas,
+- mayor dificultad de navegación,
+- mejor desempeño utilizando Kalman respecto a señales RAW,
+- reducción de movimientos bruscos gracias al EMA.
+
+---
+
+# Comparación de señales
+
+| Tipo de señal | Características |
+|---|---|
+| RAW | señal ruidosa y variable |
+| EMA | señal suavizada |
+| Kalman | estimación estable y robusta |
+
+---
+
+# Resultados obtenidos
+
+A partir de la implementación desarrollada, el robot fue capaz de:
+
+- detectar obstáculos automáticamente,
+- evitar colisiones,
+- navegar autónomamente,
+- registrar señales del entorno,
+- suavizar señales ruidosas,
+- estimar distancias mediante fusión sensorial.
+
+El filtro de Kalman entregó una estimación considerablemente más estable que las señales crudas provenientes de los sensores.
+
+---
+
+# Conclusiones
+
+El laboratorio permitió comprender la importancia de:
+
+- la percepción robótica,
+- el procesamiento de señales,
+- el filtrado de ruido,
+- la estimación de estados,
+- y la fusión sensorial.
+
+La combinación entre sensores de distancia y encoders mediante Kalman permitió mejorar significativamente la estabilidad del sistema de navegación.
+
+Además, se observó que las señales RAW presentan bastante ruido, por lo que la aplicación de filtros resulta fundamental en sistemas robóticos autónomos.
+
+---
+
+# Instrucciones de ejecución
+
+## 1. Abrir el mundo en Webots
+
+Abrir el archivo `.wbt` incluido en el repositorio.
+
+---
+
+## 2. Configurar controlador
+
+Seleccionar el robot e-puck y verificar que el controlador asignado corresponda al controlador desarrollado.
+
+---
+
+## 3. Compilar controlador
+
+Dentro de Webots:
+
+```text
+Build → Build Controller
+```
+
+## 4. Ejecutar simulación
+
+Presionar:
+
+```text
+Play
+```
+
+El robot comenzará automáticamente la navegación reactiva.
+
+---
+
+# Archivos incluidos
+
+| Archivo | Descripción |
+|---|---|
+| controlador.c | controlador principal |
+| sensor_log.csv | registro de señales |
+| mundo.wbt | mundo de simulación |
+| README.md | informe del laboratorio |
+
+---
