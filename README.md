@@ -13,11 +13,11 @@ En este laboratorio se implementó un sistema de navegación reactiva utilizando
 
 El objetivo principal fue desarrollar un controlador autónomo capaz de:
 
-- detectar obstáculos,
-- evitar colisiones,
-- estimar distancias,
-- aplicar filtros de señales,
-- y utilizar fusión sensorial mediante un filtro de Kalman.
+- detectar obstáculos
+- evitar colisiones
+- estimar distancias
+- aplicar filtros de señales
+- y utilizar fusión sensorial mediante un filtro de Kalman
 
 El sistema utiliza sensores de distancia y encoders de rueda para mejorar la percepción del entorno y la estabilidad de la navegación.
 
@@ -38,12 +38,12 @@ Se utilizó el robot diferencial **e-puck** disponible en Webots.
 
 Implementar un sistema robótico capaz de:
 
-- detectar obstáculos mediante sensores infrarrojos,
-- estimar movimiento utilizando encoders,
-- registrar señales del robot,
-- aplicar filtros de suavizado,
-- implementar un filtro de Kalman,
-- y navegar autónomamente evitando colisiones.
+- detectar obstáculos mediante sensores infrarrojos
+- estimar movimiento utilizando encoders
+- registrar señales del robot
+- aplicar filtros de suavizado
+- implementar un filtro de Kalman
+- y navegar autónomamente evitando colisiones
 
 ---
 
@@ -53,10 +53,10 @@ El robot e-puck corresponde a un robot diferencial de dos ruedas motrices indepe
 
 El robot incorpora:
 
-- sensores infrarrojos de proximidad,
-- encoders de rueda,
-- motores diferenciales,
-- controlador programable en C.
+- sensores infrarrojos de proximidad
+- encoders de rueda
+- motores diferenciales
+- controlador programable en C
 
 ---
 
@@ -81,8 +81,8 @@ Los sensores frontales fueron utilizados para detectar obstáculos cercanos, mie
 
 El robot utiliza encoders integrados en ambas ruedas:
 
-- encoder izquierdo,
-- encoder derecho.
+- encoder izquierdo
+- encoder derecho
 
 Estos sensores permitieron estimar el desplazamiento lineal del robot mediante el cálculo del desplazamiento angular de las ruedas.
 
@@ -94,9 +94,9 @@ s = r\theta
 
 donde:
 
-- \(s\) corresponde al desplazamiento lineal,
-- \(r\) corresponde al radio de la rueda,
-- \(\theta\) corresponde al desplazamiento angular.
+- \(s\) corresponde al desplazamiento lineal
+- \(r\) corresponde al radio de la rueda
+- \(\theta\) corresponde al desplazamiento angular
 
 ---
 
@@ -121,10 +121,10 @@ f_s = \frac{1}{T_s}
 
 Durante la ejecución del robot se registraron:
 
-- señales RAW de sensores,
-- señales filtradas mediante EMA,
-- estimación Kalman,
-- valores de encoders.
+- señales RAW de sensores
+- señales filtradas mediante EMA
+- estimación Kalman
+- valores de encoders
 
 La información fue almacenada en:
 
@@ -143,9 +143,9 @@ La señal RAW corresponde a la lectura directa de los sensores de distancia.
 Esta señal presentó:
 
 - ruido,
-- variaciones bruscas,
-- fluctuaciones rápidas,
-- sensibilidad a obstáculos cercanos.
+- variaciones bruscas
+- fluctuaciones rápidas
+- sensibilidad a obstáculos cercanos
 
 ---
 
@@ -194,8 +194,8 @@ Se implementó un filtro de Kalman escalar para estimar la distancia frontal al 
 
 El filtro combina:
 
-- predicción basada en encoders,
-- corrección utilizando sensores de distancia.
+- predicción basada en encoders
+- corrección utilizando sensores de distancia
 
 Esto permitió mejorar significativamente la estabilidad de la estimación.
 
@@ -245,13 +245,13 @@ El robot utiliza una estrategia reactiva basada en la distancia frontal estimada
 
 ## Estrategia utilizada
 
-- Si no existen obstáculos cercanos → avanzar.
-- Si existe un obstáculo → girar para evitar colisión.
+- Si no existen obstáculos cercanos → avanzar
+- Si existe un obstáculo → girar para evitar colisión
 
 La dirección del giro se determina utilizando sensores laterales:
 
-- obstáculo más cercano a la izquierda → girar derecha,
-- obstáculo más cercano a la derecha → girar izquierda.
+- obstáculo más cercano a la izquierda → girar derecha
+- obstáculo más cercano a la derecha → girar izquierda
 
 ---
 
@@ -259,27 +259,30 @@ La dirección del giro se determina utilizando sensores laterales:
 
 ## Escenario 1 - Entorno limpio
 
-Se creó un entorno con pocos obstáculos y amplios espacios de movimiento.
+Se creó un entorno sin obstaculos y amplios espacios de movimiento.
+<img width="613" height="464" alt="Captura de pantalla 2026-05-24 a la(s) 11 24 09 p m" src="https://github.com/user-attachments/assets/21d31d9e-3697-4dfb-83fc-8e24bdbcfe67" />
+
 
 ### Resultados observados
 
-- navegación estable,
-- trayectorias suaves,
-- pocas colisiones,
-- detección temprana de obstáculos.
+- navegación estable
+- trayectorias suaves
+- pocas colisiones
 
 ---
 
 ## Escenario 2 - Entorno complejo
 
 Se utilizó un escenario con múltiples paredes y espacios reducidos.
+<img width="609" height="409" alt="Captura de pantalla 2026-05-24 a la(s) 11 25 27 p m" src="https://github.com/user-attachments/assets/c614de2e-8877-428f-805b-02072373120f" />
+
 
 ### Resultados observados
 
-- aumento en maniobras evasivas,
-- mayor dificultad de navegación,
-- mejor desempeño utilizando Kalman respecto a señales RAW,
-- reducción de movimientos bruscos gracias al EMA.
+- aumento en maniobras evasivas
+- mayor dificultad de navegación
+- mejor desempeño utilizando Kalman respecto a señales RAW
+- reducción de movimientos bruscos gracias al EMA
 
 ---
 
@@ -290,37 +293,6 @@ Se utilizó un escenario con múltiples paredes y espacios reducidos.
 | RAW | señal ruidosa y variable |
 | EMA | señal suavizada |
 | Kalman | estimación estable y robusta |
-
----
-
-# Resultados obtenidos
-
-A partir de la implementación desarrollada, el robot fue capaz de:
-
-- detectar obstáculos automáticamente,
-- evitar colisiones,
-- navegar autónomamente,
-- registrar señales del entorno,
-- suavizar señales ruidosas,
-- estimar distancias mediante fusión sensorial.
-
-El filtro de Kalman entregó una estimación considerablemente más estable que las señales crudas provenientes de los sensores.
-
----
-
-# Conclusiones
-
-El laboratorio permitió comprender la importancia de:
-
-- la percepción robótica,
-- el procesamiento de señales,
-- el filtrado de ruido,
-- la estimación de estados,
-- y la fusión sensorial.
-
-La combinación entre sensores de distancia y encoders mediante Kalman permitió mejorar significativamente la estabilidad del sistema de navegación.
-
-Además, se observó que las señales RAW presentan bastante ruido, por lo que la aplicación de filtros resulta fundamental en sistemas robóticos autónomos.
 
 ---
 
@@ -369,13 +341,31 @@ El robot comenzará automáticamente la navegación reactiva.
 
 ---
 
-# Archivos incluidos
+# Resultados obtenidos
 
-| Archivo | Descripción |
-|---|---|
-| controlador.c | controlador principal |
-| sensor_log.csv | registro de señales |
-| mundo.wbt | mundo de simulación |
-| README.md | informe del laboratorio |
+A partir de la implementación desarrollada, el robot fue capaz de:
+
+- detectar obstáculos automáticamente
+- evitar colisiones
+- navegar autónomamente
+- registrar señales del entorno
+- suavizar señales ruidosas
+- estimar distancias mediante fusión sensorial
+
+El filtro de Kalman entregó una estimación considerablemente más estable que las señales crudas provenientes de los sensores.
 
 ---
+
+# Conclusiones
+
+El laboratorio permitió comprender la importancia de:
+
+- la percepción robótica
+- el procesamiento de señales
+- el filtrado de ruido
+- la estimación de estados
+- y la fusión sensorial
+
+La combinación entre sensores de distancia y encoders mediante Kalman permitió mejorar significativamente la estabilidad del sistema de navegación.
+
+Además, se observó que las señales RAW presentan bastante ruido, por lo que la aplicación de filtros resulta fundamental en sistemas robóticos autónomos.
